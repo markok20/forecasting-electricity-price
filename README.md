@@ -1,18 +1,18 @@
 # electricity-price-forecast
 
-Kuinka tehdä täydellinen ennuste sähkön pörssihinnan kehityksestä?
+How to make a complete forecast of the development of the stock market price of electricity?
 
-Miten sähköpörssissä muodostuva sähkön hinta kehittyy seuraavien viikkojen tai kuukausien aikana? Onko hinnassa selvä trendi tai kausittaisuus? Minä kuukausina hinta nousee selkeästi keskimääräistä korkeammaksi ja milloin laskee?
+How will the price of electricity on the power exchange develop in the coming weeks or months? Is there a clear trend or seasonality in the price? In what months will the price rise clearly above average and when will it fall?
 
-Käytettävissä oli tammikuusta 2013 alkaen data, joka sisälsi noin 3 000 riviä spot-hintatietoa. Data ulottui aina 21. maaliskuuhun 2021 saakka. Spot-hinta määräytyy Pohjoismaisessa Nord Pool-sähköpörssissä, jossa  muodostetaan sähkön hinta jokaiselle vuorokauden tunnille. Suomen alueelle muodostuu oma Spot-hinta. Kuvataan hinnan kehitystä tammikuusta 2013 alkaen laskettuna siten, että kullekin kuukaudelle on määritelty keskiarvo.
+As of January 2013, data containing approximately 3,000 rows of spot price information was available. The data lasted until March 21, 2021. The spot price is determined on the Nordic Nord Pool power exchange, where the price of electricity is formed for each hour of the day. A separate Spot price will be formed for the Finnish territory. Describe the price development since January 2013, calculated by defining an average for each month.
 
-Miten voidaan luoda täydellinen ennuste sähkön pörssihinnan kehitykselle? Perinteisesti ennustemallina on käytetty liukuvaa keskiarvoa, joka on yksinkertaisin malli ennustaa kehitystä. Liukuvan keskiarvon menetelmässä tulevan ajanhetken kysynnän ennuste on keskiarvo menneiden ajanhetkien kysynnästä. Kuvataan liukuvan keskiarvohinnan kehitystä.
+How can a complete forecast be made for the development of the stock market price of electricity? Traditionally, a moving average has been used as the forecast model, which is the simplest model to predict development. In the moving average method, the forecast of future time demand is the average of the demand of past times. The development of the moving average price is described.
 
-Itse käytän ratkaisuna eksponentiaalisen tasoituksen (liukuva keskiarvo painotettuna tuoreimpiin ajankohtiin) mallia, joka reagoi herkästi muutoksiin ja helposti päivitettävissä. Kyseessä on yksi suosituimmista kysynnän ennustamisen malleista. Malliin voidaan lisätä komponentteja, jotka huomioivat trendin ja kausivaihtelun. Kysyntään vaikuttavia tekijöitä ovat kysynnän perustason lisäksi trendi-, kausi-, sykli- ja markkinointitekijät sekä ennustamaton vaihtelu.
+I use an exponential smoothing (moving average weighted to the most recent time) model that is responsive to change and easily updatable. This is one of the most popular models for forecasting demand. Components that take into account trend and seasonality can be added to the model. In addition to the basic level of demand, factors affecting demand include trend, seasonal, cyclical and marketing factors as well as unpredictable fluctuations.
 
-Tarkastellaan seuraavaksi trendin ja kausittaisuuden kehitystä. Trendi on aluksi hieman laskeva, mutta nouseva vuodesta 2016-2019, kunnes siirtyy uudestaan laskevaksi. Kausittaisuudesta nähdään se, että hinta nouse vuodenvaihteessa, mutta kääntyy kesäksi laskuun. Kesän jälkeen hintakäyrä on nouseva vuodenvaihteeseen saakka.
-Tehdään datan perusteella ennustus, miten hinta kehittyy seuraavien 12 viikon aikana maaliskuusta puolesta välistä alkaen.
+Let us now consider the development of trend and seasonality. The trend is initially slightly declining but rising from 2016-2019 until it starts to decline again. The seasonality shows that the price rises at the turn of the year, but turns to fall for the summer. After the summer, the price curve will rise until the turn of the year.
+Based on the data, make a prediction of how the price will develop over the next 12 weeks from mid-March.
 
-Suomen alueen Spot-hinta määräytyy sähköpörssissä seuraavan vuorokauden jokaiselle tunnille vuorokautta edeltävänä päivänä viimeistään kello 12:30 (CET). Hinta muodostuu sähköpörssiin syötettyjen osto- ja myyntitarjousten leikkauspisteessä. 
+The Spot price in the Finnish area is determined on the power exchange for each hour of the following day no later than 12:30 (CET) on the day before the day. The price is formed at the intersection of the buy and sell offers entered into the power exchange.
 
-Spot-hinta on niin kutsutusti raaka markkinahinta sähköenergialle kullekin alueelle, eikä se ota huomioon sähkönmyyjän toimintakustannuksia, kuten alkuperäsertifikaatteja, toimitusmaksua, profiilikustannuksia tai esimerkiksi sähkönmyyjän laskutusta tai asiakaspalvelua. Nord Poolissa sähkön hintojen yksikkönä käytetään euroa per megawattitunti, eivätkä pörssin listalla näkyvät hinnat sisällä arvonlisäveroa. 
+The spot price is the so-called raw market price for electricity for each region and does not take into account the electricity seller's operating costs, such as certificates of origin, delivery fee, profile costs or, for example, the electricity seller's billing or customer service. In Nord Pool, the unit of electricity prices is the euro per megawatt hour, and the prices listed on the stock exchange do not include VAT.
